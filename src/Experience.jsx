@@ -23,7 +23,7 @@ export default function Experience() {
         <Player />
       </Physics>
 
-      <Effects />
+      {/* <Effects /> */}
     </>
   );
 }
