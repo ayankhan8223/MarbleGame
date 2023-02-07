@@ -59,6 +59,8 @@ function Interface() {
             className={`key ${forward ? "active" : ""}`}
             onMouseDown={() => forwardFunction(true)}
             onMouseUp={() => forwardFunction(false)}
+            onPointerDown={() => forwardFunction(true)}
+            onPointerUp={() => forwardFunction(false)}
           ></div>
         </div>
         <div className="raw">
@@ -66,16 +68,22 @@ function Interface() {
             className={`key ${leftward ? "active" : ""}`}
             onMouseDown={() => leftwardFunction(true)}
             onMouseUp={() => leftwardFunction(false)}
+            onPointerDown={() => leftwardFunction(true)}
+            onPointerUp={() => leftwardFunction(false)}
           ></div>
           <div
             className={`key ${backward ? "active" : ""}`}
             onMouseDown={() => backwardFunction(true)}
             onMouseUp={() => backwardFunction(false)}
+            onPointerDown={() => backwardFunction(true)}
+            onPointerUp={() => backwardFunction(false)}
           ></div>
           <div
             className={`key ${rightward ? "active" : ""}`}
             onMouseDown={() => rightwardFunction(true)}
             onMouseUp={() => rightwardFunction(false)}
+            onPointerDown={() => rightwardFunction(true)}
+            onPointerUp={() => rightwardFunction(false)}
           ></div>
         </div>
         <div className="raw">
@@ -83,6 +91,8 @@ function Interface() {
             className={`key large ${jump ? "active" : ""}`}
             onMouseDown={() => jumpFunction(true)}
             onMouseUp={() => jumpFunction(false)}
+            onPointerDown={() => jumpFunction(true)}
+            onPointerUp={() => jumpFunction(false)}
           ></div>
         </div>
       </div>
