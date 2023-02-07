@@ -7,6 +7,13 @@ import * as THREE from "three";
 
 function Player() {
   const body = useRef();
+  // const handleClick = useGame((state) => state.handleClick);
+  const handleForward = useGame((state) => state.forward);
+  const handleBackward = useGame((state) => state.backward);
+  const handleRightward = useGame((state) => state.rightward);
+  const handleLeftward = useGame((state) => state.leftward);
+  const handleJump = useGame((state) => state.jump);
+
   const [subscribeKeys, getKey] = useKeyboardControls();
   const { rapier, world } = useRapier();
   const rapierWorld = world.raw();
@@ -76,31 +83,33 @@ function Player() {
       unSubscribeReset();
     };
   }, []);
+  if (handleJump) {
+    jump();
+  }
 
   useFrame((state, delta) => {
-    const { forward, backward, leftward, rightward, jump } = getKey();
+    var { forward, backward, leftward, rightward, jump } = getKey();
     const impulse = { x: 0, y: 0, z: 0 };
     const torque = { x: 0, y: 0, z: 0 };
-
     const impulseStength = 0.6 * delta;
     const torqueStrength = 0.2 * delta;
 
-    if (forward) {
+    if (forward || handleForward) {
       impulse.z -= impulseStength;
       torque.x -= torqueStrength;
     }
 
-    if (rightward) {
+    if (rightward || handleRightward) {
       impulse.x += impulseStength;
       torque.z -= torqueStrength;
     }
 
-    if (backward) {
+    if (backward || handleBackward) {
       impulse.z += impulseStength;
       torque.x += torqueStrength;
     }
 
-    if (leftward) {
+    if (leftward || handleLeftward) {
       impulse.x -= impulseStength;
       torque.z += torqueStrength;
     }
@@ -132,6 +141,7 @@ function Player() {
       reStart();
     }
   });
+
   return (
     <>
       <RigidBody
